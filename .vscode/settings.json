@@ -1,0 +1,30 @@
+{
+  "eslint.enable": true,
+  "editor.formatOnSave": false,
+  "eslint.autoFixOnSave": true,
+  "eslint.validate": [
+      "javascript",
+      "javascriptreact",
+      { "language": "typescript", "autoFix": true },
+      { "language": "typescriptreact", "autoFix": true }
+    ],
+    "[typescript]": {
+      "editor.formatOnSave": false
+    },
+    //*.tsx
+    "[typescriptreact]": {
+      "editor.formatOnSave": false
+    },
+    //ファイル保存時の空白削除
+    "files.trimTrailingWhitespace": false,
+    //文章が長いときの改行
+    "editor.wordWrap": "on",
+    "files.eol": "\n"
+    //vscodeの色が変えられる
+    //   "workbench.colorCustomizations": {
+    //     "titleBar.activeBackground": "#FFD700",
+    //     "titleBar.activeForeground": "#000000",
+    //     "activityBar.background": "#FFD700",
+    //     "activityBar.foreground": "#000000"
+    // }
+}
