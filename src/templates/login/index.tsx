@@ -24,6 +24,7 @@ const LoginTemplate = () => {
         type:0
     });
 
+    //入力された値の変更
     const inputChange = (event:any) => {
         const str = (event.target.value === '')?'':event.target.value;
         if (inputCheck(str)){
