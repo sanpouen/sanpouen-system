@@ -2,7 +2,7 @@
 import * as React from 'react';
 import LoginTemplate from '../../templates/login';
 
-const Login:React.FunctionComponent = () => {
+const Login: React.FunctionComponent = () => {
     return(
         <React.Fragment>
             <LoginTemplate />

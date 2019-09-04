@@ -10,8 +10,10 @@ import {Card,
     Button} from '@material-ui/core';
 import { Visibility,VisibilityOff } from '@material-ui/icons';
 import { useStyles } from './index-css';
-import Alert from '../../molecules/alert';
+import Snackbar from '../../atoms/Snackbar';
 import { SnackbarProvider } from 'notistack';
+import { withRouter } from 'react-router-dom';
+import history from '../../pages/history';
 
 const LoginTemplate = () => {
     const classes = useStyles();
@@ -23,65 +25,81 @@ const LoginTemplate = () => {
         message:'',
         type:0
     });
-
-    const inputChange = (event:any) => {
+    const inputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const str = (event.target.value === '')?'':event.target.value;
         if (inputCheck(str)){
             switch (event.target.name){
             case 'userName':
-                setValues({...values,userName:event.target.value,open: false});
+                setValues({...values, userName: event.target.value, open: false});
                 break;
             case 'password':
-                setValues({ ...values, password: event.target.value,open: false});
+                setValues({ ...values, password: event.target.value, open: false});
                 break;
             }
         } else {
             switch (event.target.name){
             case 'userName':
-                setValues({...values,userName:event.target.value,open: true,message:'ユーザー名半角英数字のみ利用できます',type:1});
+                setValues({...values, userName: event.target.value, open: true, message: 'ユーザー名半角英数字のみ利用できます', type: 1});
                 break;
             case 'password':
-                setValues({ ...values, password: event.target.value,open: true,message:'パスワード半角英数字のみ利用できます',type:1});
+                setValues({ ...values, password: event.target.value, open: true, message: 'パスワード半角英数字のみ利用できます', type: 1});
                 break;
             }
         }
     };
-
-    const inputCheck = (str:string) => {
+    const inputCheck = (str: string) => {
         if(null === str.match(/^[A-Za-z0-9]*$/)){
             return false;
         }
         return true;
     };
-
     const handleClickShowPassword = () => {
         setValues({ ...values, showPassword: !values.showPassword });
     };
-
     const loginStart = () => {
         const userName = values.userName;
         const passWord = values.password;
         if(!inputCheck(userName)){
-            setValues({ ...values, open: true,message:'ユーザー名は半角英数字のみ利用できます',type:1});
+            setValues({ 
+                ...values,
+                open: true,
+                message:'ユーザー名は半角英数字のみ利用できます',
+                type:1
+            });
         } else if(!inputCheck(passWord)){
-            setValues({ ...values, open: true,message:'パスワードは半角英数字のみ利用できます',type:1});
+            setValues({
+                ...values,
+                open: true,
+                message:'パスワードは半角英数字のみ利用できます',
+                type:1
+            });
         } else{
             if(userName.length > 8){
-                setValues({ ...values, open: true,message:'ユーザー名は8文字以内で入力してください',type:1});
+                setValues({
+                    ...values,
+                    open: true,
+                    message:'ユーザー名は8文字以内で入力してください',
+                    type:1
+                });
             } else if (passWord.length > 10){
-                setValues({ ...values, open: true,message:'パスワードは10文字以内で入力してください',type:1});
+                setValues({
+                    ...values,
+                    open: true,
+                    message:'パスワードは10文字以内で入力してください',
+                    type:1
+                });
             } else {
-                console.log('ここでログイン完了');
+                history.push('/tabPanel');
             }
         }
     };
-
     return (
         <div className={classes.loginContainer}>
             {values.open &&
-            <SnackbarProvider maxSnack={3}>
-                <Alert message={values.message} type={values.type}/>
-            </SnackbarProvider>}
+                <SnackbarProvider maxSnack={3}>
+                    <Snackbar message={values.message} type={values.type}/>
+                </SnackbarProvider>
+            }
             <Card className={classes.card}>
                 <CardContent className={classes.itemContainer}>
                     <FormControl className={classes.userNameContainer}>
@@ -130,4 +148,4 @@ const LoginTemplate = () => {
     );
 };
 
-export default LoginTemplate;
+export default withRouter(LoginTemplate);

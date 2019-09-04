@@ -2,14 +2,13 @@
 import * as React from 'react';
 import { useSnackbar, VariantType } from 'notistack';
 
-interface IAlert {
-    message:string;
-    type:number;
-    //0が成功、1がalert、2はerror、3はinfo（青）
+interface ISnackbarProps {
+    message: string; // 表示したい文言
+    type: number; //0が成功、1がalert、2はerror、3はinfo（青）
 }
 
-export const Alert = (props:IAlert) => {
-    const { message,type } = props;
+export const Snackbar = (props: ISnackbarProps) => {
+    const { message, type } = props;
     const { enqueueSnackbar } = useSnackbar();
     const openSnacbar = (variant: VariantType) => {
         enqueueSnackbar(message, { variant });
@@ -38,4 +37,4 @@ export const Alert = (props:IAlert) => {
     );
 };
 
-export default Alert;
+export default Snackbar;
