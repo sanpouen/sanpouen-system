@@ -17,8 +17,6 @@
     },
     //ファイル保存時の空白削除
     "files.trimTrailingWhitespace": false,
-    //文章が長いときの改行
-    "editor.wordWrap": "on",
     "files.eol": "\n"
     //vscodeの色が変えられる
     //   "workbench.colorCustomizations": {

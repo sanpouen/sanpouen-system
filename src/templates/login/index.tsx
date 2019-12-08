@@ -60,7 +60,7 @@ const LoginTemplate = () => {
         const userName = values.userName;
         const passWord = values.password;
         if(!inputCheck(userName)){
-            setValues({ 
+            setValues({
                 ...values,
                 open: true,
                 message:'ユーザー名は半角英数字のみ利用できます',
@@ -89,7 +89,7 @@ const LoginTemplate = () => {
                     type:1
                 });
             } else {
-                history.push('/tabPanel');
+                history.push('/management');
             }
         }
     };
